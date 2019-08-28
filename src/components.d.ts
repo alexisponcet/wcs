@@ -162,6 +162,9 @@ export namespace Components {
     * The type of control to display. The default type is text.
     */
     'type': TextFieldTypes;
+    /**
+    * The text value of the input.
+    */
     'value': string | null;
   }
   interface WcsInputGroup {}
@@ -492,7 +495,14 @@ declare namespace LocalJSX {
     * The name of the control, which is submitted with the form data.
     */
     'name'?: string;
+    /**
+    * Emitted when the value has changed.
+    */
     'onWcsChange'?: (event: CustomEvent<InputChangeEventDetail>) => void;
+    /**
+    * Emitted when a keyboard input ocurred.
+    */
+    'onWcsInput'?: (event: CustomEvent<InputEvent>) => void;
     /**
     * A regular expression that the value is checked against. The pattern must match the entire value, not just some subset. Use the title attribute to describe the pattern to help the user. This attribute applies when the value of the type attribute is `"text"`, `"search"`, `"tel"`, `"url"`, `"email"`, or `"password"`, otherwise it is ignored.
     */
@@ -517,6 +527,9 @@ declare namespace LocalJSX {
     * The type of control to display. The default type is text.
     */
     'type'?: TextFieldTypes;
+    /**
+    * The text value of the input.
+    */
     'value'?: string | null;
   }
   interface WcsInputGroup extends JSXBase.HTMLAttributes<HTMLWcsInputGroupElement> {}

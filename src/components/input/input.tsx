@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, Method, Prop, Watch, h } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, Method, Prop, Watch, h, ComponentInterface } from '@stencil/core';
 import { InputChangeEventDetail, TextFieldTypes } from './input-interface';
 
 /**
@@ -9,12 +9,21 @@ import { InputChangeEventDetail, TextFieldTypes } from './input-interface';
     styleUrl: 'input.scss',
     shadow: true,
 })
-export class Input {
+export class Input implements ComponentInterface {
     @Element() el: HTMLElement;
 
     private inputId = `ion-input-${inputIds++}`;
-
     private nativeInput?: HTMLInputElement;
+
+    /**
+     * Emitted when a keyboard input ocurred.
+     */
+    @Event() wcsInput!: EventEmitter<InputEvent>;
+
+    /**
+     * Emitted when the value has changed.
+     */
+    @Event() wcsChange!: EventEmitter<InputChangeEventDetail>;
 
     /**
      * The name of the control, which is submitted with the form data.
@@ -23,6 +32,9 @@ export class Input {
 
     @Prop({ reflect: true }) background: 'normal' | 'white' = 'normal';
 
+    /**
+     * The text value of the input.
+     */
     @Prop({ reflect: true, mutable: true }) value: string | null = '';
 
     /**
@@ -45,17 +57,16 @@ export class Input {
      */
     @Prop() autofocus = false;
 
+    // TODO: Add styling for disabled input.
     /**
      * If `true`, the user cannot interact with the input.
      */
     @Prop() disabled = false;
 
-
     /**
      * If the value of the type attribute is `"file"`, then this attribute will indicate the types of files that the server accepts, otherwise it will be ignored. The value must be a comma-separated list of unique content type specifiers.
      */
     @Prop() accept?: string;
-
 
     /**
      * A hint to the browser for which keyboard to display.
@@ -119,8 +130,6 @@ export class Input {
      */
     @Prop() type: TextFieldTypes = 'text';
 
-    @Event() wcsChange!: EventEmitter<InputChangeEventDetail>;
-
     private getValue(): string {
         return this.value || '';
     }
@@ -128,19 +137,13 @@ export class Input {
     @Watch('value')
     protected valueChanged() {
         this.wcsChange.emit({ value: this.value });
+    }
+
+    private onInput(event: InputEvent) {
+        this.value = (event.target as HTMLInputElement).value;
         console.log(this.value);
-    }
-
-    private onInput(ev: Event) {
-        const input = ev.target as HTMLInputElement | null;
-        if (input) {
-            this.value = input.value || '';
-        }
-    }
-
-    @Watch('disabled')
-    protected disabledChanged() {
-        // TODO: implement
+        // TODO: This needs test
+        this.wcsInput.emit(event);
     }
 
     render() {
@@ -152,7 +155,7 @@ export class Input {
                 name={this.name}
                 class={this.background}
                 value={value}
-                onInput={this.onInput}
+                onInput={(evt: InputEvent) => this.onInput(evt)}
                 ref={input => this.nativeInput = input}
                 disabled={this.disabled}
                 accept={this.accept}
