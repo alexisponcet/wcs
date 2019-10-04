@@ -23,18 +23,30 @@
         <wcs-card>
             <wcs-tabs>
                 <wcs-tab header="Examples">
-                    <pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">wcs-modal</span> <span class="hljs-attr">show</span>=<span class="hljs-string">"true"</span>&gt;</span>
+                    <pre><code class="language-html">
+<span class="hljs-tag">&lt;<span class="hljs-name">wcs-button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"getElementById('modal-1').setAttribute('show', true)"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"btn-modal-1-show"</span>&gt;</span>Afficher la boîte de dialogue<span class="hljs-tag">&lt;/<span class="hljs-name">wcs-button</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">wcs-modal</span> <span class="hljs-attr">show</span>=<span class="hljs-string">"false"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"modal-1"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"wcs-modal-header"</span>&gt;</span>Modal title<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
     Voulez-vous quittez la page ? 
     <span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a cursus mi. Nullam et sem mi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce sollicitudin pellentesque libero nec elementum.
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"wcs-modal-actions"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">wcs-button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wcs-dark"</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">"stroked"</span>&gt;</span>C'est non<span class="hljs-tag">&lt;/<span class="hljs-name">wcs-button</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">wcs-button</span>&gt;</span>J'accepte<span class="hljs-tag">&lt;/<span class="hljs-name">wcs-button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">wcs-modal</span>&gt;</span>
 </code></pre>
-<wcs-modal show="true">
+<p><wcs-button onclick="getElementById('modal-1').setAttribute('show', true)" id="btn-modal-1-show">Afficher la boîte de dialogue</wcs-button></p>
+<wcs-modal show="false" id="modal-1">
     <div slot="wcs-modal-header">Modal title</div>
     Voulez-vous quittez la page ? 
     <br/>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a cursus mi. Nullam et sem mi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce sollicitudin pellentesque libero nec elementum.
+    <div slot="wcs-modal-actions">
+        <wcs-button class="wcs-dark" mode="stroked">C'est non</wcs-button>
+        <wcs-button>J'accepte</wcs-button>
+    </div>
 </wcs-modal>
                 </wcs-tab>
                 <wcs-tab header="API">
