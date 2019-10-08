@@ -40,6 +40,22 @@
 <wcs-button mode="stroked" class="wcs-dark">Dark</wcs-button>
 <wcs-button mode="stroked" class="wcs-primary" disabled>Disabled</wcs-button>
 ```
+### Square
+
+```html
+<wcs-button shape="square" class="wcs-primary">
+    <i class="material-icons">accessibility_new</i>
+</wcs-button>
+<wcs-button shape="square" mode="clear" class="wcs-primary">
+    <i class="material-icons">accessibility_new</i>
+</wcs-button>
+<wcs-button shape="square" mode="stroked" class="wcs-primary">
+    <i class="material-icons">accessibility_new</i>
+</wcs-button>
+<wcs-button shape="square" class="wcs-primary" disabled>
+    <i class="material-icons">accessibility_new</i>
+</wcs-button>
+```
 
 ### Round
 
@@ -47,30 +63,13 @@
 <wcs-button shape="round" class="wcs-primary">
     <i class="material-icons">accessibility_new</i>
 </wcs-button>
-<wcs-button shape="round" class="wcs-primary" clear>
+<wcs-button shape="round" mode="clear" class="wcs-primary">
     <i class="material-icons">accessibility_new</i>
 </wcs-button>
-<wcs-button shape="round" class="wcs-primary" stroked>
+<wcs-button shape="round" mode="stroked" class="wcs-primary">
     <i class="material-icons">accessibility_new</i>
 </wcs-button>
 <wcs-button shape="round" class="wcs-primary" disabled>
-    <i class="material-icons">accessibility_new</i>
-</wcs-button>
-```
-
-### Icon only
-
-```html
-<wcs-button class="wcs-primary" shape="square">
-    <i class="material-icons">accessibility_new</i>
-</wcs-button>
-<wcs-button class="wcs-primary" clear shape="square">
-    <i class="material-icons">accessibility_new</i>
-</wcs-button>
-<wcs-button class="wcs-primary" stroked shape="square">
-    <i class="material-icons">accessibility_new</i>
-</wcs-button>
-<wcs-button class="wcs-primary" disabled shape="square">
     <i class="material-icons">accessibility_new</i>
 </wcs-button>
 ```
@@ -87,7 +86,7 @@
 <wcs-button class="wcs-primary" shape="small">Small</wcs-button>
 <wcs-button class="wcs-primary" mode="clear" shape="small">Small</wcs-button>
 <wcs-button class="wcs-primary" mode="stroked" shape="small">Small</wcs-button>
-<wcs-button class="wcs-primary" mode="stroked" disabled shape="small">Disabled</wcs-button>
+<wcs-button class="wcs-primary" stroked disabled shape="small">Disabled</wcs-button>
 ```
 
 <!-- Auto Generated Below -->
@@ -104,6 +103,21 @@
 | `shape`    | `shape`    | Specify the shape of the button.                                    | `"normal" \| "round" \| "small" \| "square"` | `'normal'`  |
 | `type`     | `type`     | Specify the button type.                                            | `"button" \| "submit"`                       | `'button'`  |
 
+
+## Dependencies
+
+### Used by
+
+ - [wcs-dropdown](../dropdown)
+ - [wcs-modal](../modal)
+
+### Graph
+```mermaid
+graph TD;
+  wcs-dropdown --> wcs-button
+  wcs-modal --> wcs-button
+  style wcs-button fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 

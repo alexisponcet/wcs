@@ -30,6 +30,7 @@ import {
 } from './components/tabs/tabs-interface';
 
 export namespace Components {
+  interface WcsActionBar {}
   interface WcsApp {}
   interface WcsBadge {}
   interface WcsButton {
@@ -71,6 +72,12 @@ export namespace Components {
     'indeterminate': boolean;
     'name': string;
   }
+  interface WcsDropdown {
+    'disabled': boolean;
+    'mode': WcsButtonMode;
+    'shape': WcsButtonShape;
+  }
+  interface WcsDropdownItem {}
   interface WcsHeader {}
   interface WcsIcon {
     'icon': string;
@@ -168,6 +175,17 @@ export namespace Components {
     'value': string | null;
   }
   interface WcsInputGroup {}
+  interface WcsModal {
+    /**
+    * Specifies whether the component should display a backdrop on the entire page
+    */
+    'backdrop': boolean;
+    /**
+    * Displays the modal
+    */
+    'show': boolean;
+    'showCloseButton': boolean;
+  }
   interface WcsProgressBar {
     /**
     * Whether it displays a label indicating the percentage of progress above the bar.
@@ -261,6 +279,12 @@ export namespace Components {
 declare global {
 
 
+  interface HTMLWcsActionBarElement extends Components.WcsActionBar, HTMLStencilElement {}
+  var HTMLWcsActionBarElement: {
+    prototype: HTMLWcsActionBarElement;
+    new (): HTMLWcsActionBarElement;
+  };
+
   interface HTMLWcsAppElement extends Components.WcsApp, HTMLStencilElement {}
   var HTMLWcsAppElement: {
     prototype: HTMLWcsAppElement;
@@ -297,6 +321,18 @@ declare global {
     new (): HTMLWcsCheckboxElement;
   };
 
+  interface HTMLWcsDropdownElement extends Components.WcsDropdown, HTMLStencilElement {}
+  var HTMLWcsDropdownElement: {
+    prototype: HTMLWcsDropdownElement;
+    new (): HTMLWcsDropdownElement;
+  };
+
+  interface HTMLWcsDropdownItemElement extends Components.WcsDropdownItem, HTMLStencilElement {}
+  var HTMLWcsDropdownItemElement: {
+    prototype: HTMLWcsDropdownItemElement;
+    new (): HTMLWcsDropdownItemElement;
+  };
+
   interface HTMLWcsHeaderElement extends Components.WcsHeader, HTMLStencilElement {}
   var HTMLWcsHeaderElement: {
     prototype: HTMLWcsHeaderElement;
@@ -319,6 +355,12 @@ declare global {
   var HTMLWcsInputGroupElement: {
     prototype: HTMLWcsInputGroupElement;
     new (): HTMLWcsInputGroupElement;
+  };
+
+  interface HTMLWcsModalElement extends Components.WcsModal, HTMLStencilElement {}
+  var HTMLWcsModalElement: {
+    prototype: HTMLWcsModalElement;
+    new (): HTMLWcsModalElement;
   };
 
   interface HTMLWcsProgressBarElement extends Components.WcsProgressBar, HTMLStencilElement {}
@@ -369,16 +411,20 @@ declare global {
     new (): HTMLWcsTabsElement;
   };
   interface HTMLElementTagNameMap {
+    'wcs-action-bar': HTMLWcsActionBarElement;
     'wcs-app': HTMLWcsAppElement;
     'wcs-badge': HTMLWcsBadgeElement;
     'wcs-button': HTMLWcsButtonElement;
     'wcs-card': HTMLWcsCardElement;
     'wcs-card-body': HTMLWcsCardBodyElement;
     'wcs-checkbox': HTMLWcsCheckboxElement;
+    'wcs-dropdown': HTMLWcsDropdownElement;
+    'wcs-dropdown-item': HTMLWcsDropdownItemElement;
     'wcs-header': HTMLWcsHeaderElement;
     'wcs-icon': HTMLWcsIconElement;
     'wcs-input': HTMLWcsInputElement;
     'wcs-input-group': HTMLWcsInputGroupElement;
+    'wcs-modal': HTMLWcsModalElement;
     'wcs-progress-bar': HTMLWcsProgressBarElement;
     'wcs-progress-radial': HTMLWcsProgressRadialElement;
     'wcs-select': HTMLWcsSelectElement;
@@ -391,6 +437,7 @@ declare global {
 }
 
 declare namespace LocalJSX {
+  interface WcsActionBar extends JSXBase.HTMLAttributes<HTMLWcsActionBarElement> {}
   interface WcsApp extends JSXBase.HTMLAttributes<HTMLWcsAppElement> {}
   interface WcsBadge extends JSXBase.HTMLAttributes<HTMLWcsBadgeElement> {}
   interface WcsButton extends JSXBase.HTMLAttributes<HTMLWcsButtonElement> {
@@ -435,6 +482,14 @@ declare namespace LocalJSX {
     * Emitted when the checked property has changed.
     */
     'onWcsChange'?: (event: CustomEvent<CheckboxChangeEventDetail>) => void;
+  }
+  interface WcsDropdown extends JSXBase.HTMLAttributes<HTMLWcsDropdownElement> {
+    'disabled'?: boolean;
+    'mode'?: WcsButtonMode;
+    'shape'?: WcsButtonShape;
+  }
+  interface WcsDropdownItem extends JSXBase.HTMLAttributes<HTMLWcsDropdownItemElement> {
+    'onWcsDropdownItemClick'?: (event: CustomEvent<void>) => void;
   }
   interface WcsHeader extends JSXBase.HTMLAttributes<HTMLWcsHeaderElement> {}
   interface WcsIcon extends JSXBase.HTMLAttributes<HTMLWcsIconElement> {
@@ -533,6 +588,21 @@ declare namespace LocalJSX {
     'value'?: string | null;
   }
   interface WcsInputGroup extends JSXBase.HTMLAttributes<HTMLWcsInputGroupElement> {}
+  interface WcsModal extends JSXBase.HTMLAttributes<HTMLWcsModalElement> {
+    /**
+    * Specifies whether the component should display a backdrop on the entire page
+    */
+    'backdrop'?: boolean;
+    /**
+    * Triggered when the user leaves the dialog with the closing button.
+    */
+    'onWcs-dialog-closed'?: (event: CustomEvent<void>) => void;
+    /**
+    * Displays the modal
+    */
+    'show'?: boolean;
+    'showCloseButton'?: boolean;
+  }
   interface WcsProgressBar extends JSXBase.HTMLAttributes<HTMLWcsProgressBarElement> {
     /**
     * Whether it displays a label indicating the percentage of progress above the bar.
@@ -627,16 +697,20 @@ declare namespace LocalJSX {
   }
 
   interface IntrinsicElements {
+    'wcs-action-bar': WcsActionBar;
     'wcs-app': WcsApp;
     'wcs-badge': WcsBadge;
     'wcs-button': WcsButton;
     'wcs-card': WcsCard;
     'wcs-card-body': WcsCardBody;
     'wcs-checkbox': WcsCheckbox;
+    'wcs-dropdown': WcsDropdown;
+    'wcs-dropdown-item': WcsDropdownItem;
     'wcs-header': WcsHeader;
     'wcs-icon': WcsIcon;
     'wcs-input': WcsInput;
     'wcs-input-group': WcsInputGroup;
+    'wcs-modal': WcsModal;
     'wcs-progress-bar': WcsProgressBar;
     'wcs-progress-radial': WcsProgressRadial;
     'wcs-select': WcsSelect;
